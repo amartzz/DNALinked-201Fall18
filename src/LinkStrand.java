@@ -77,7 +77,7 @@ public class LinkStrand implements IDnaStrand
 		//just dont know how to reverse the order of nodes
 		Node current= myFirst;
 		//ListNode reverseList = new ListNode(dna);
-		while (current!=null) {
+		/*while (current!=null) {
 			StringBuilder copy = new StringBuilder(current.info);
 			copy.reverse();
 			copy.toString();
@@ -86,10 +86,10 @@ public class LinkStrand implements IDnaStrand
 			//reverseList=reverseList.next;			
 			current=current.next;
 		}
-			
+			*/
 		
 		
-		return ss;
+		return null;
 		
 	}
 
