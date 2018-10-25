@@ -59,7 +59,7 @@ public class LinkStrand implements IDnaStrand
 	@Override
 	public IDnaStrand append(String dna) {
 		//update mySize
-		mySize= mySize+dna.length;
+		mySize= mySize+dna.length();
 		//put string into node
 		Node newNode = new Node(dna);
 		myLast.next= newNode;
@@ -72,16 +72,18 @@ public class LinkStrand implements IDnaStrand
 	@Override
 	public IDnaStrand reverse() {
 		
-		copy.reverse();
-		StringStrand ss = new StringStrand(copy.toString());
+		//copy.reverse();
+		//StringStrand ss = new StringStrand(copy.toString());
 		//just dont know how to reverse the order of nodes
 		Node current= myFirst;
-		ListNode reverseList = new ListNode(dna);
+		//ListNode reverseList = new ListNode(dna);
 		while (current!=null) {
 			StringBuilder copy = new StringBuilder(current.info);
 			copy.reverse();
-			reverseList.append(copy);
-			reverseList=reverseList.next;			
+			copy.toString();
+			Node newReversed= new Node(copy);
+			current.append(copy);
+			//reverseList=reverseList.next;			
 			current=current.next;
 		}
 			
@@ -115,10 +117,10 @@ public class LinkStrand implements IDnaStrand
            return list.info.charAt(dex);
         }
 
-	}
+	
 	@Override
 	public String toString() {
-		StringBuilder dnaList= new StringBuilder(myInfo);
+		StringBuilder dnaList= new StringBuilder();
 		Node current=myFirst;
 		while (current!=null) {
 			dnaList.append(current.info);
