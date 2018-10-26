@@ -90,29 +90,29 @@ public class LinkStrand implements IDnaStrand
 	// <- make sure reversed
 	@Override
 	public IDnaStrand reverse() {
-//		Node current= myFirst;
-//		StringBuilder firstOne = new StringBuilder(current.info);	
-//		firstOne.reverse();
-//		String thing= firstOne.toString();
-//		//need to get first one into node, then add to link strand
-//		LinkStrand reverseLS= new LinkStrand(firstOne);
-//		current=current.next;
-//		//update size of link strand
-//			
-//		while (current!=null) {
-//			StringBuilder copy = new StringBuilder(current.info);
-//			copy.reverse();
-//			string rDna= copy.toString();
-//			
-//			Node newReversed= new Node(copy);
-//			
-//			//reverseList=reverseList.next;			
-//			current=current.next;
-//		}
+		Node current= myFirst;
+		StringBuilder firstOne = new StringBuilder(current.info);	
+		firstOne.reverse();
+		String thing= firstOne.toString();
+		//need to get first one into node, then add to link strand
+		LinkStrand reverseLS= new LinkStrand();
+		current=current.next;
+		//update size of link strand
+			
+		while (current!=null) {
+			StringBuilder copy = new StringBuilder(current.info);
+			copy.reverse();
+			String rDna= copy.toString();
+		//this line doesnt work, unclear why
+		//	Node newReversed= new Node(copy);
+	//rest of code should work once the copy is placed into newReversed
+					
+			current=current.next;
+		}
 			
 		
 		
-		return null;
+		return reverseLS;
 		
 	}
 
@@ -122,7 +122,7 @@ public class LinkStrand implements IDnaStrand
 	}
 //to be completed
 	//check for bigger and negative indexes
-	//myIndex++, myLocal++
+	
 	//if index given is bigger than size of link strand, reinitialize index and lcoal index to zero, myCurrent=myFirst
 	@Override
 	public char charAt(int index) {
