@@ -71,13 +71,13 @@ public class LinkStrand implements IDnaStrand
 	
 	@Override
 	public String toString() {
-		StringBuilder dnaList= new StringBuilder();
+		StringBuilder aList= new StringBuilder();
 		Node current=myFirst;
 		while (current!=null) {
-			dnaList.append(current.info);
+			aList.append(current.info);
 			current=current.next;
 			}
-		return dnaList.toString();
+		return aList.toString();
 	}	
 	
 	
@@ -91,27 +91,17 @@ public class LinkStrand implements IDnaStrand
 	@Override
 	public IDnaStrand reverse() {
 		Node current= myFirst;
-		StringBuilder firstOne = new StringBuilder(current.info);	
-		firstOne.reverse();
-		String thing= firstOne.toString();
-		//need to get first one into node, then add to link strand
-		LinkStrand reverseLS= new LinkStrand();
-		current=current.next;
-		//update size of link strand
-			
-		while (current!=null) {
-			StringBuilder copy = new StringBuilder(current.info);
-			copy.reverse();
-			String rDna= copy.toString();
-		//this line doesnt work, unclear why
-		//	Node newReversed= new Node(copy);
-	//rest of code should work once the copy is placed into newReversed
-					
+		StringBuilder cop = new StringBuilder(current.info);	
+		cop.append(current.info);
+		//fills StringBuilder cop with all nodes			
+		while (current.next!=null) {
 			current=current.next;
+			cop.append(current.info);
 		}
-			
-		
-		
+		//now reverse
+		cop.reverse();
+		//create new LinkStrand, fill with reversed nodes
+		LinkStrand reverseLS= new LinkStrand(cop.toString());
 		return reverseLS;
 		
 	}
@@ -142,7 +132,7 @@ public class LinkStrand implements IDnaStrand
 			myLocalIndex++;
 			
 			//mycurrent.info.length is the total length of node
-			if (myIndex >= myCurrent.info.length()) {
+			if (myLocalIndex >= myCurrent.info.length()) {
 				myLocalIndex = 0;
 				myCurrent=myCurrent.next;
 			}
