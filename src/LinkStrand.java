@@ -82,18 +82,15 @@ public class LinkStrand implements IDnaStrand
 	@Override
 	public IDnaStrand reverse() {
 		Node current= myFirst;
-		StringBuilder cop = new StringBuilder(current.info);	
-		cop.append(current.info);
+		StringBuilder cop = new StringBuilder();	
+		//cop.append(current.info);
 		//fills StringBuilder cop with all nodes
 		//NEED to fix single node case
-		
+		//update mySize
 		while (current.next!=null) {
 			current=current.next;
 			cop.append(current.info);
-			
-			
-			
-		}
+			}
 		
 		//now reverse
 		cop.reverse();
