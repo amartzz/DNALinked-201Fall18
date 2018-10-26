@@ -1,7 +1,9 @@
 
 public class LinkStrand implements IDnaStrand
 {
-
+/**
+ * node class, allows us to use nodes within linkedlist
+ */
 	private class Node {
 		String info;
 		Node next;
@@ -10,6 +12,16 @@ public class LinkStrand implements IDnaStrand
 			next = null;
 		}
 	}
+	/**
+	 * intialize variables
+	 * myFirst is first node
+	 * myLast is last node
+	 * mySize is number of chars in all nodes
+	 * myAppends # of times append called
+	 * myIndex is last index called in my char at
+	 * myLocalIndex is the index with a node
+	 * myCurrent is the current node
+	 */
 	private Node myFirst,myLast; //first node, last node
 	private long mySize; //number of chars stored in all nodes
 	private int myAppends; //number of times append has been called
@@ -17,8 +29,11 @@ public class LinkStrand implements IDnaStrand
 	private int myLocalIndex;
 	private Node myCurrent;
 
-
-	// constructors
+	/**
+	 * class constructor
+	 * @param empty
+	 */
+	
 	public LinkStrand(){
 		this("");
 	}
@@ -32,12 +47,18 @@ public class LinkStrand implements IDnaStrand
 	public LinkStrand(String s) {
 		initialize(s);
 	}
-
+	/**
+	 * @param empty
+	 * @return int mySize which is size of LinkedList
+	 */
 	@Override
 	public long size() {
 		return mySize;
 	}
-
+	/**
+	 * add values to initialized values
+	 * does not return anything
+	 */
 	@Override
 	public void initialize(String source) {
 		myFirst= new Node(source);
@@ -50,12 +71,18 @@ public class LinkStrand implements IDnaStrand
 		
 
 	}
-
+	/**
+	 * returns LinkStrand that contains source
+	 */
 	@Override
 	public IDnaStrand getInstance(String source) {
 		return new LinkStrand(source);
 	}
-
+	/**
+	 * creates one new node, updates instance variables to maintain class invariants
+	 * @param String dna
+	 * @return updates LinkStrand with new node
+	 */
 	@Override
 	public IDnaStrand append(String dna) {
 		//update mySize
@@ -68,17 +95,12 @@ public class LinkStrand implements IDnaStrand
 		
 		return this;
 	}
-	
-	
-	
-	
-//create new linkstrand
-//reverse copy, add in front of the first one
-//copy--place into node
-	//say the thing after new copy node (.next) = myFirst
-	// myFirstreversed= new copy node you just added
-	//create new linkstrand
-	// <- make sure reversed
+
+	/**
+	 * empty param
+	 * reverses the content within each node, reverses order of nodes
+	 * @return a new reversed linked list
+	 */
 	@Override
 	public IDnaStrand reverse() {
 		StringBuilder first = new StringBuilder(myFirst.info);
@@ -109,22 +131,27 @@ public class LinkStrand implements IDnaStrand
 	}
 	
 
-
+/**
+ * empty param
+ * @returns the number of times appends has been called
+ */
 	@Override
 	public int getAppendCount() {
 		return myAppends;
 	}
-//to be completed
-	//check for bigger and negative indexes
-	
-	//if index given is bigger than size of link strand, reinitialize index and lcoal index to zero, myCurrent=myFirst
+	/**
+	 * @param int index, index to search at
+	 * check for negative or out of bounds index
+	 * check if index requested is greater than myIndex, need to start at 0
+	 * @return character
+	 */
 	@Override
 	public char charAt(int index) {
 		if (index>= mySize || index<0) {
 			throw new IndexOutOfBoundsException();
 		}
 		if (myIndex >index){
-			//start over, needs to go backwards
+		//start over, needs to go backwards
 			myCurrent=myFirst;
 			myIndex=0;
 			myLocalIndex=0;
@@ -145,6 +172,11 @@ public class LinkStrand implements IDnaStrand
 		myIndex= index;
            return myCurrent.info.charAt(myLocalIndex);
         }
+	/**
+	 * empty param
+	 * writes toString method for StringBuilder objects
+	 * @return String
+	 */
 	@Override
 	public String toString() {
 		StringBuilder aList= new StringBuilder();

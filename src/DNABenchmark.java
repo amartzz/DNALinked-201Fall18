@@ -23,7 +23,7 @@ public class DNABenchmark {
 	 * Change these to change the tests to
 	 * use a different type
 	 */
-//	private static final String strandType = "StringStrand";
+	//private static final String strandType = "StringStrand";
 //	private static final String strandType = "LinkStrand";
 	private static final String strandType = "StringBuilderStrand";
 	
