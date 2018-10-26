@@ -69,16 +69,7 @@ public class LinkStrand implements IDnaStrand
 		return this;
 	}
 	
-	@Override
-	public String toString() {
-		StringBuilder aList= new StringBuilder();
-		Node current=myFirst;
-		while (current!=null) {
-			aList.append(current.info);
-			current=current.next;
-			}
-		return aList.toString();
-	}	
+	
 	
 	
 //create new linkstrand
@@ -94,19 +85,16 @@ public class LinkStrand implements IDnaStrand
 		StringBuilder cop = new StringBuilder(current.info);	
 		cop.append(current.info);
 		//fills StringBuilder cop with all nodes
-		//single node case
-		int ana=0;
+		//NEED to fix single node case
+		
 		while (current.next!=null) {
-			ana=1;
-			cop.append(current.info);
-			
 			current=current.next;
-			
-		}
-		if (ana==0) {
 			cop.append(current.info);
 			
+			
+			
 		}
+		
 		//now reverse
 		cop.reverse();
 		//create new LinkStrand, fill with reversed nodes
@@ -150,7 +138,16 @@ public class LinkStrand implements IDnaStrand
 		myIndex= index;
            return myCurrent.info.charAt(myLocalIndex);
         }
-
+	@Override
+	public String toString() {
+		StringBuilder aList= new StringBuilder();
+		Node current=myFirst;
+		while (current!=null) {
+			aList.append(current.info);
+			current=current.next;
+			}
+		return aList.toString();
+	}	
 	
 
 
