@@ -68,25 +68,48 @@ public class LinkStrand implements IDnaStrand
 		
 		return this;
 	}
-
+	
+	@Override
+	public String toString() {
+		StringBuilder dnaList= new StringBuilder();
+		Node current=myFirst;
+		while (current!=null) {
+			dnaList.append(current.info);
+			current=current.next;
+			}
+		return dnaList.toString();
+	}	
+	
+	
+//create new linkstrand
+//reverse copy, add in front of the first one
+//copy--place into node
+	//say the thing after new copy node (.next) = myFirst
+	// myFirstreversed= new copy node you just added
+	//create new linkstrand
+	// <- make sure reversed
 	@Override
 	public IDnaStrand reverse() {
-		
-		//copy.reverse();
-		//StringStrand ss = new StringStrand(copy.toString());
-		//just dont know how to reverse the order of nodes
-		Node current= myFirst;
-		//ListNode reverseList = new ListNode(dna);
-		/*while (current!=null) {
-			StringBuilder copy = new StringBuilder(current.info);
-			copy.reverse();
-			copy.toString();
-			Node newReversed= new Node(copy);
-			current.append(copy);
-			//reverseList=reverseList.next;			
-			current=current.next;
-		}
-			*/
+//		Node current= myFirst;
+//		StringBuilder firstOne = new StringBuilder(current.info);	
+//		firstOne.reverse();
+//		String thing= firstOne.toString();
+//		//need to get first one into node, then add to link strand
+//		LinkStrand reverseLS= new LinkStrand(firstOne);
+//		current=current.next;
+//		//update size of link strand
+//			
+//		while (current!=null) {
+//			StringBuilder copy = new StringBuilder(current.info);
+//			copy.reverse();
+//			string rDna= copy.toString();
+//			
+//			Node newReversed= new Node(copy);
+//			
+//			//reverseList=reverseList.next;			
+//			current=current.next;
+//		}
+			
 		
 		
 		return null;
@@ -98,35 +121,38 @@ public class LinkStrand implements IDnaStrand
 		return myAppends;
 	}
 //to be completed
+	//check for bigger and negative indexes
+	//myIndex++, myLocal++
+	//if index given is bigger than size of link strand, reinitialize index and lcoal index to zero, myCurrent=myFirst
 	@Override
 	public char charAt(int index) {
+		if (index>= mySize || index<0) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (myIndex >index){
+			//start over, needs to go backwards
+			myCurrent=myFirst;
+			myIndex=0;
+			myLocalIndex=0;
+			
+		}
 		
-		int count = 0;
-		int dex = 0;
-		Node list = myFirst;
-		while (count != index) {
-			count++;
-			dex++;
-			if (dex >= list.info.length()) {
-				dex = 0;
-				list = list.next;
+		while (myIndex!= index) {
+			myIndex++;
+			myLocalIndex++;
+			
+			//mycurrent.info.length is the total length of node
+			if (myIndex >= myCurrent.info.length()) {
+				myLocalIndex = 0;
+				myCurrent=myCurrent.next;
 			}
 		}
 		//saves index from previous call
 		myIndex= index;
-           return list.info.charAt(dex);
+           return myCurrent.info.charAt(myLocalIndex);
         }
 
 	
-	@Override
-	public String toString() {
-		StringBuilder dnaList= new StringBuilder();
-		Node current=myFirst;
-		while (current!=null) {
-			dnaList.append(current.info);
-			current=current.next;
-			}
-		return dnaList.toString();
-	}
+
 
 }

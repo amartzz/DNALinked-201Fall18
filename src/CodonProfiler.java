@@ -29,9 +29,18 @@ public class CodonProfiler {
 					c = iter.next();
 				}
 				String cod = ""+a+b+c;
-				if (cod.equals(codons[k])) {
-					ret[k] += 1;
+				//zero value at key cod
+				if (!map.containsKey(cod)) {
+					map.put(cod, 0);
 				}
+				//add value to map at key cod, adds 1
+				map.put(cod, map.get(cod)+1);
+			}
+			//using a for each loop, but marks where in loop using z
+			int z=0;
+			for (String key: codons) {
+				ret[z]=map.get(key);
+				z++;
 			}
 		}
 		return ret;
