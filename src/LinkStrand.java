@@ -81,24 +81,41 @@ public class LinkStrand implements IDnaStrand
 	// <- make sure reversed
 	@Override
 	public IDnaStrand reverse() {
-		Node current= myFirst;
-		StringBuilder cop = new StringBuilder();	
-		//cop.append(current.info);
-		//fills StringBuilder cop with all nodes
-		//NEED to fix single node case
-		//update mySize
-		while (current.next!=null) {
-			current=current.next;
-			cop.append(current.info);
-			}
+			
 		
-		//now reverse
-		cop.reverse();
-		//create new LinkStrand, fill with reversed nodes
-		LinkStrand reverseLS= new LinkStrand(cop.toString());
+		
+		//Node firstcopNode= new Node(copString);
+		
+		Node current= myFirst;
+		//Node head=myFirst;
+		Node prev= null;
+		Node next= null;
+		//LinkStrand reverseLS= new LinkStrand(myFirst.info);
+		
+		
+		while (current.next!=null) {
+			next= current.next;
+			StringBuilder cop = new StringBuilder(next.info);
+			cop=cop.reverse();
+			String copString= cop.toString();
+			Node rNode= new Node(copString);
+			next=rNode;		
+			
+			
+			
+			current.next=prev;
+			
+			
+			prev=current;
+			current=next;
+			
+			}
+		LinkStrand reverseLS= new LinkStrand(current.info);		
 		return reverseLS;
 		
 	}
+	
+
 
 	@Override
 	public int getAppendCount() {
