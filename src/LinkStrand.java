@@ -95,13 +95,17 @@ public class LinkStrand implements IDnaStrand
 		cop.append(current.info);
 		//fills StringBuilder cop with all nodes
 		//single node case
-		
-		while (current!=null) {
-			
+		int ana=0;
+		while (current.next!=null) {
+			ana=1;
 			cop.append(current.info);
-			if (current.next!=null) {
+			
 			current=current.next;
-			}
+			
+		}
+		if (ana==0) {
+			cop.append(current.info);
+			
 		}
 		//now reverse
 		cop.reverse();
